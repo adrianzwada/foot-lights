@@ -1,18 +1,18 @@
 import MovieCardCheck from '@/components/movieCardCheck/movieCardCheck'
 import styles from './movie.module.css'
+import movieDBClient from '@/constans/apiClients'
 
-const Movies = () => {
+const Movies = async () => {
+
+	const popularMovies = await movieDBClient.fetchPopularMoviesData()
+	const renderMovies = popularMovies.results.map((movie,index) => (
+		<div key={index} className={styles.card}><MovieCardCheck movie={movie}/></div>
+	))
+
 	return (
 		<div className={styles.container}>
-			<div  className={styles.card}><MovieCardCheck /></div>
-			<div  className={styles.card}><MovieCardCheck /></div>
-			<div  className={styles.card}><MovieCardCheck /></div>
-			<div  className={styles.card}><MovieCardCheck /></div>
-			<div  className={styles.card}><MovieCardCheck /></div>
-			<div  className={styles.card}><MovieCardCheck /></div>
-		
-		</div>
-	)
+			{renderMovies}
+			</div>)
 }
 
 export default Movies
