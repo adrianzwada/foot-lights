@@ -18,11 +18,18 @@ export default async function SingleMoviePage ({params})
 		return Math.floor(par * factor) / factor
 	}
 	console.log(movieIdDetails)
+import movieDBClient from '@/constans/apiClients'
+const popularMovies = await movieDBClient.fetchPopularMoviesData()
+const SingleMoviePage = async() => {
 	return (
-		
+	
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
+
 				<Image src={`https://image.tmdb.org/t/p/w300${movieIdDetails.backdrop_path}`} alt='' fill className={styles.img} />
+
+				<Image src='/postId.jpg' alt='' fill className={styles.img} />
+
 			</div>
 			<div className={styles.textContainer}>
 				<h2 className={styles.titleContainer}>{movieIdDetails.original_title}</h2>
@@ -33,9 +40,16 @@ export default async function SingleMoviePage ({params})
 				<p>Budget: {movieIdDetails.budget}</p>
 				<p>Revenue: {movieIdDetails.revenue}</p>
 				<div className={styles.desContainer}>
+
 				<p>{movieIdDetails.overview}</p>
 				</div>
 				<div>For more info check official homepage: <Link key={movieIdDetails.homepage} href='' as={`${movieIdDetails.homepage}`}>Check now</Link> </div>
+
+				<p>des</p>
+
+					<div>1{popularMovies.results[1].title}</div>
+			</div>
+
 			</div>
 		</div>
 	)

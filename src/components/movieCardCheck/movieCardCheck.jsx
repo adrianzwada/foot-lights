@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const MovieCardCheck = ({movie}) => {
-
+	console.log(movie)
 	return (
 		<div className={styles.container}>
 			<div className={styles.top}>
@@ -15,6 +15,7 @@ const MovieCardCheck = ({movie}) => {
 				<h2 className={styles.title}>{movie.title}
 				</h2>			
 				<Link key={movie.id} href='/Movie/[id]' as={`/Movie/${movie.id}`} passHref classame={styles.link}>Read more</Link>
+				<Link href='/movie/[id]' as={`/movie/${movie.id}`} passHref classame={styles.link}>Read more</Link>
 			</div>
 		</div>
 	)
