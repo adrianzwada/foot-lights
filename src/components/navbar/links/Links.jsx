@@ -7,6 +7,8 @@ const links = [
 	{ title: 'Movies', path: '/Movie' },
 	{ title: 'Tv-Shows', path: '/Tv-Shows' },
 	{ title: 'Actors', path: '/Actors' },
+	{ title: "Blog", path: "/blog",
+	  },
 ]
 const Links = () => {
 	const [open, setOpen] = useState(false)

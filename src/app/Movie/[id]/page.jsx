@@ -6,12 +6,12 @@ export default async function SingleMoviePage ({params})
 {
 	//Fetching data by ID 
 	const movieIdDetails = await apiMovieID.fetchMovieDetails(params.id)
+
 	// Gender mapping function
-	const genderTabs =  movieIdDetails.genres.map((genre) => (
-		<div> Genre:
-			<p key={movieIdDetails.id} className={styles.card}>{genre.name}</p>
-		</div>
+	const genderTabs =  movieIdDetails.genres.map((genre, index) => (
+			<p key={index} className={styles.genreTab}>{genre.name}</p>
 	))
+	
 	// Votte Average rounding 
 	function ratingAdjust(par, decimalPlaces = 1) {
 		const factor = 10 ** decimalPlaces
@@ -22,20 +22,20 @@ export default async function SingleMoviePage ({params})
 		
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
-				<Image src={`https://image.tmdb.org/t/p/w300${movieIdDetails.backdrop_path}`} alt='' fill className={styles.img} />
+				<Image fill src={`https://image.tmdb.org/t/p/w500${movieIdDetails.backdrop_path}`} alt={movieIdDetails.title} className={styles.img} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
 			</div>
 			<div className={styles.textContainer}>
 				<h2 className={styles.titleContainer}>{movieIdDetails.original_title}</h2>
-				<p>Release Date: {movieIdDetails.release_date}</p>
-				<p>Runtime: {movieIdDetails.runtime} minutes</p>
-				{genderTabs}
-				<p>Rating: {ratingAdjust(movieIdDetails.vote_average)} in {movieIdDetails.vote_count} voters.</p>
-				<p>Budget: {movieIdDetails.budget}</p>
-				<p>Revenue: {movieIdDetails.revenue}</p>
+				<div>Release Date: {movieIdDetails.release_date}</div>
+				<div>Runtime: {movieIdDetails.runtime} minutes</div>
+				<div className={styles.genreContainer}> Genre: {genderTabs}	</div>
+				<div>Rating: {ratingAdjust(movieIdDetails.vote_average)} in {movieIdDetails.vote_count} voters.</div>
+				<div>Budget: {movieIdDetails.budget}</div>
+				<div>Revenue: {movieIdDetails.revenue}</div>
 				<div className={styles.desContainer}>
-				<p>{movieIdDetails.overview}</p>
+					<div>{movieIdDetails.overview}</div>
 				</div>
-				<div>For more info check official homepage: <Link key={movieIdDetails.homepage} href='' as={`${movieIdDetails.homepage}`}>Check now</Link> </div>
+				<div>For more informations check official homepage: <Link key={movieIdDetails.homepage} href='' as={`${movieIdDetails.homepage}`}>Check now</Link> </div>
 			</div>
 		</div>
 	)
