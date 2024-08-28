@@ -8,7 +8,7 @@ const MovieCardCheck = ({movie}) => {
 		<div className={styles.container}>
 			<div className={styles.top}>
 				<div className={styles.imgContainer}>
-					<Image src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt='' fill className={styles.img} priority />
+					<Image fill src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt='' className={styles.img} priority priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
 				</div>
 			</div>
 			<div className={styles.bottom}>
