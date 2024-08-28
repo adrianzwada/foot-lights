@@ -9,8 +9,9 @@ const Movies = async () => {
 	))
 	return (
 		<div className={styles.container}>
-			{renderMovies }
-			</div>)
+			{renderMovies}
+		</div>
+)
 }
 
 export default Movies
