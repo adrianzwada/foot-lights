@@ -2,38 +2,25 @@ import styles from './singleMoviePage.module.css'
 import Image from 'next/image'
 import apiMovieID from '@/constans/apiMovieId'
 import Link from 'next/link'
-export default async function SingleMoviePage ({params}) 
-{
-	//Fetching data by ID 
-	const movieIdDetails = await apiMovieID.fetchMovieDetails(params.id)
+		
+export default async function SingleMoviePage ({params})  {
+//Fetching data by ID 
+const movieIdDetails = await apiMovieID.fetchMovieDetails(params.id)
+// Gender mapping function
+const genderTabs =  movieIdDetails.genres.map((genre, index) => (
+		<p key={index} className={styles.genreTab}>{genre.name}</p>
+))
 
-	// Gender mapping function
-	const genderTabs =  movieIdDetails.genres.map((genre, index) => (
-			<p key={index} className={styles.genreTab}>{genre.name}</p>
-	))
-	
-	// Votte Average rounding 
-	function ratingAdjust(par, decimalPlaces = 1) {
-		const factor = 10 ** decimalPlaces
-		return Math.floor(par * factor) / factor
-	}
-	console.log(movieIdDetails)
-import movieDBClient from '@/constans/apiClients'
-const popularMovies = await movieDBClient.fetchPopularMoviesData()
-const SingleMoviePage = async() => {
+// Votte Average rounding 
+function ratingAdjust(par, decimalPlaces = 1) {
+	const factor = 10 ** decimalPlaces
+	return Math.floor(par * factor) / factor
+}
+console.log(movieIdDetails)
 	return (
-	
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
-<<<<<<< HEAD
 				<Image fill src={`https://image.tmdb.org/t/p/w500${movieIdDetails.backdrop_path}`} alt={movieIdDetails.title} className={styles.img} priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
-=======
-
-				<Image src={`https://image.tmdb.org/t/p/w300${movieIdDetails.backdrop_path}`} alt='' fill className={styles.img} />
-
-				<Image src='/postId.jpg' alt='' fill className={styles.img} />
-
->>>>>>> aaa05252f263a03aa9becf6efa1371ace910e58a
 			</div>
 			<div className={styles.textContainer}>
 				<h2 className={styles.titleContainer}>{movieIdDetails.original_title}</h2>
@@ -44,23 +31,10 @@ const SingleMoviePage = async() => {
 				<div>Budget: {movieIdDetails.budget}</div>
 				<div>Revenue: {movieIdDetails.revenue}</div>
 				<div className={styles.desContainer}>
-<<<<<<< HEAD
-					<div>{movieIdDetails.overview}</div>
 				</div>
-				<div>For more informations check official homepage: <Link key={movieIdDetails.homepage} href='' as={`${movieIdDetails.homepage}`}>Check now</Link> </div>
-=======
-
-				<p>{movieIdDetails.overview}</p>
-				</div>
+				<div>{movieIdDetails.overview}</div>
 				<div>For more info check official homepage: <Link key={movieIdDetails.homepage} href='' as={`${movieIdDetails.homepage}`}>Check now</Link> </div>
-
-				<p>des</p>
-
-					<div>1{popularMovies.results[1].title}</div>
-			</div>
-
->>>>>>> aaa05252f263a03aa9becf6efa1371ace910e58a
-			</div>
+				</div>
 		</div>
-	)
-}
+	)}
+
