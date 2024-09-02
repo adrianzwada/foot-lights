@@ -18,6 +18,4 @@ export default function MovieCard({ movieData }) {
 		</div>
 	)
 }
-// export default async function MovieCardIdComponent({ params }) {
-// 	const movie = await theMovieID.fetchMovieDetails(params.id)
 

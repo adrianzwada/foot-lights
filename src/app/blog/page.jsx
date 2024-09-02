@@ -1,30 +1,17 @@
-import PostCard from "@/components/postCard/postCard";
-import styles from "./blog.module.css";
-import { getPosts } from "@/constans/data";
+import MovieCardCheck from '@/components/movieCardCheck/movieCardCheck'
+import styles from './blog.module.css'
+import movieDBClient from '@/constans/apiClients'
 
+const Blog = async () => {
+	const popularMovies = await movieDBClient.fetchPopularMoviesData()
+	const renderMovies = popularMovies.results.map((movie,index) => (
+		<div key={index} className={styles.card}><MovieCardCheck movie={movie}/></div>
+	))
+	return (
+		<div className={styles.container}>
+			{renderMovies}
+		</div>
+)
+}
 
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/blog", {next:{revalidate:3600}});
-
-  if (!res.ok) {
-    throw new Error("Something went wrong");
-  }
-
-  return res.json();
-};
-
-const BlogPage = async () => {
-
-  const posts = await getData();
-  return (
-    <div className={styles.container}>
-      {posts.map((post) => (
-        <div className={styles.post} key={post.id}>
-          <PostCard post={post} />
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default BlogPage;
+export default Blog
