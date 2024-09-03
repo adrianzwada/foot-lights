@@ -1,58 +1,84 @@
 import Image from "next/image";
 import styles from "./singlePost.module.css";
-import PostUser from "@/components/postUser/postUser";
-import { Suspense } from "react";
-import { getPost } from "@/constans/data";
+// import PostUser from "@/components/postUser/postUser";
+// import { Suspense } from "react";
+// import { getPost } from "@/constans/data";
 
-// FETCH DATA WITH AN API
+// // FETCH DATA WITH AN API
 
 
-export const generateMetadata = async ({ params }) => {
-  const { slug } = params;
+// export const generateMetadata = async ({ params }) => {
+//   const { slug } = params;
 
-  const post = await getPost(slug);
+//   const post = await getPost(slug);
 
-  return {
-    title: post.title,
-    description: post.desc,
-  };
-};
+//   return {
+//     title: post.title,
+//     description: post.desc,
+//   };
+// };
 
-const SinglePostPage = async ({ params }) => {
-  const { slug } = params;
+// const SinglePostPage = async ({ params }) => {
+//   const { slug } = params;
 
-  // FETCH DATA WITH AN API
-  const post = await getData(slug);
+//   // FETCH DATA WITH AN API
+//   const post = await getData(slug);
 
-  // FETCH DATA WITHOUT AN API
-  // const post = await getPost(slug);
+//   // FETCH DATA WITHOUT AN API
+//   // const post = await getPost(slug);
 
+//   return (
+//     <div className={styles.container}>
+//       {post.img && (
+//         <div className={styles.imgContainer}>
+//           <Image src={post.img} alt="" fill className={styles.img} />
+//         </div>
+//       )}
+//       <div className={styles.textContainer}>
+//         <h1 className={styles.title}>{post.title}</h1>
+//         <div className={styles.detail}>
+//           {post && (
+//             <Suspense fallback={<div>Loading...</div>}>
+//               <PostUser userId={post.userId} />
+//             </Suspense>
+//           )}
+//           <div className={styles.detailText}>
+//             <span className={styles.detailTitle}>Published</span>
+//             <span className={styles.detailValue}>
+//               {post.createdAt.toString().slice(4, 16)}
+//             </span>
+//           </div>
+//         </div>
+//         <div className={styles.content}>{post.desc}</div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SinglePostPage;
+
+const SinglePostPage = ()=> {
   return (
     <div className={styles.container}>
-      {post.img && (
-        <div className={styles.imgContainer}>
-          <Image src={post.img} alt="" fill className={styles.img} />
-        </div>
-      )}
+      <div className={styles.imgContainer}>
+        <Image src='https://images.pexels.com/photos/27777230/pexels-photo-27777230/free-photo-of-jasny-lekki-czarno-bialy-miasto.jpeg' all='' fill className={styles.img}></Image>
+      </div>
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>{post.title}</h1>
+        <h2 className={styles.title}>Title</h2>
         <div className={styles.detail}>
-          {post && (
-            <Suspense fallback={<div>Loading...</div>}>
-              <PostUser userId={post.userId} />
-            </Suspense>
-          )}
+          <Image src='https://images.pexels.com/photos/27777230/pexels-photo-27777230/free-photo-of-jasny-lekki-czarno-bialy-miasto.jpeg' className={styles.avatar}/>
           <div className={styles.detailText}>
-            <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
-            </span>
+            <div className={styles.detailTitle}>Autor</div>
+            <div className={styles.detailValue}>AAA sdadasd</div>
+          </div>
+          <div className={styles.detailText}>
+            <div className={styles.detailTitle}>Published</div>
+            <div className={styles.detailValue}>Date</div>
           </div>
         </div>
-        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SinglePostPage;
+export default SinglePostPage
