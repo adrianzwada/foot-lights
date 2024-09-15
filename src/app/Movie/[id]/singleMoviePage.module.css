@@ -25,6 +25,7 @@
 }
 .genreTab{
    gap:50px;
+   padding-left: 10px;
 }
 .detailsContainer{
    display: flex;

@@ -2,14 +2,10 @@ import Image from "next/image";
 import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
-import { getPost } from "@/constans/data";
-
-// FETCH DATA WITH AN API
-
+import { getPost } from "../../../constans/data"
 
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
-
   const post = await getPost(slug);
 
   return {
@@ -21,12 +17,8 @@ export const generateMetadata = async ({ params }) => {
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
-  // FETCH DATA WITH AN API
-  const post = await getData(slug);
-
-  // FETCH DATA WITHOUT AN API
-  // const post = await getPost(slug);
-
+  const post = await getPost(slug);
+  console.log(post.userID)
   return (
     <div className={styles.container}>
       {post.img && (
@@ -45,7 +37,7 @@ const SinglePostPage = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
+              1.1.2022
             </span>
           </div>
         </div>

@@ -1,4 +1,3 @@
-
 {
   "name": "foot-lights",
   "version": "0.1.0",
@@ -10,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mongoose": "^8.6.2",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",

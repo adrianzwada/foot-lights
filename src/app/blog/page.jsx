@@ -1,17 +1,23 @@
-import MovieCardCheck from '@/components/movieCardCheck/movieCardCheck'
 import styles from './blog.module.css'
-import movieDBClient from '@/constans/apiClients'
+import PostCard from '@/components/postCard/postCard'
+import { getPosts } from "../../constans/data";
 
-const Blog = async () => {
-	const popularMovies = await movieDBClient.fetchPopularMoviesData()
-	const renderMovies = popularMovies.results.map((movie,index) => (
-		<div key={index} className={styles.card}><MovieCardCheck movie={movie}/></div>
-	))
-	return (
-		<div className={styles.container}>
-			{renderMovies}
-		</div>
-)
+export const metadata = {
+	title: 'Blog Page ',
+	description: `Blog pages`,
 }
 
-export default Blog
+const BlogPage = async () => {
+  const posts = await getPosts();
+  return (
+    <div className={styles.container}>
+      {posts.map((post) => (
+        <div className={styles.post} key={post.id}>
+          <PostCard post={post} />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default BlogPage;
