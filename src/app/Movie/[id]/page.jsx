@@ -2,7 +2,18 @@ import styles from './singleMoviePage.module.css'
 import Image from 'next/image'
 import apiMovieID from '@/constans/apiMovieId'
 import Link from 'next/link'
-		
+
+
+export const generateMetadata = async ({ params }) => {
+	const { id } = params;
+	const post = await apiMovieID.fetchMovieDetails(id);
+  
+	return {
+	  title: post.title,
+	  description: post.overview,
+	};
+  };
+
 export default async function SingleMoviePage ({params})  {
 //Fetching data by ID 
 const movieIdDetails = await apiMovieID.fetchMovieDetails(params.id)
@@ -16,7 +27,6 @@ function ratingAdjust(par, decimalPlaces = 1) {
 	const factor = 10 ** decimalPlaces
 	return Math.floor(par * factor) / factor
 }
-console.log(movieIdDetails)
 	return (
 		<div className={styles.container}>
 			<div className={styles.imgContainer}>
