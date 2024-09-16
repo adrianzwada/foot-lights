@@ -16,6 +16,11 @@ const nextConfig = {
 			},
 		],
 	},
+    experimental: {
+		serverActions: {
+            allowedOrigins: ["localhost:3000", "psychic-space-journey-g5r444rw9jr296qq-3000.app.github.dev"]
+        },
+      }
 }
 
 export default nextConfig

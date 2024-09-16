@@ -1,17 +1,20 @@
-import { sayHello  } from "../../constans/action"
+import { addPost, deletePost  } from "../../constans/action"
 
 
 const ServerActionTestPage = () => {
-
-    const actionInComponent = async () => {
-        'use server'
-        console.log('hello')
-    }
-
     return (
         <div>
-            <form action={actionInComponent}>
-              <button>test</button>
+            <form action={addPost}>
+                <input type="text" placeholder="title" name='title'></input>
+                <input type="text" placeholder="desc" name='desc'></input>
+                <input type="text" placeholder="slug" name='slug'></input>
+                <input type="text" placeholder="userId" name='userId'></input>
+                <button>Create now</button>
+            </form>
+
+            <form action={deletePost}>
+                <input type="text" placeholder="postId" name="id" />
+                <button>Delete</button>
             </form>
         </div>
     )
