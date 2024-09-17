@@ -2,6 +2,7 @@ import { addPost, deletePost  } from "../../constans/action"
 
 
 const ServerActionTestPage = () => {
+    console.log('aaa')
     return (
         <div>
             <form action={addPost}>
