@@ -2,7 +2,6 @@ import { addPost, deletePost  } from "../../constans/action"
 
 
 const ServerActionTestPage = () => {
-    console.log('aaa')
     return (
         <div>
             <form action={addPost}>
@@ -12,7 +11,6 @@ const ServerActionTestPage = () => {
                 <input type="text" placeholder="userId" name='userId'></input>
                 <button>Create now</button>
             </form>
-
             <form action={deletePost}>
                 <input type="text" placeholder="postId" name="id" />
                 <button>Delete</button>

@@ -1,9 +1,11 @@
-import { signIn } from "@/constans/auth";
+import { auth, signIn } from "@/constans/auth";
 import styles from "./login.module.css";
 
-const LoginPage =() => {
+const LoginPage = async () => {
+  const session = await auth()
+  console.log(session, 'session')
 
-    const handleGithubLogin = async () => {
+  const handleGithubLogin = async () => {
         "use server"
         await signIn("github")
     };
