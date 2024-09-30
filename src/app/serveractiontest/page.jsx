@@ -11,7 +11,6 @@ const ServerActionTestPage = () => {
                 <input type="text" placeholder="userId" name='userId'></input>
                 <button>Create now</button>
             </form>
-
             <form action={deletePost}>
                 <input type="text" placeholder="postId" name="id" />
                 <button>Delete</button>

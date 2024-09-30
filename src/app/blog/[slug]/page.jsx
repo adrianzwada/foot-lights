@@ -13,12 +13,17 @@ export const generateMetadata = async ({ params }) => {
     description: post.desc,
   };
 };
-
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+  return res.json();
+};
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
-  const post = await getPost(slug);
-  console.log(post.userID)
+  const post = await getData(slug)
   return (
     <div className={styles.container}>
       {post.img && (
@@ -31,7 +36,7 @@ const SinglePostPage = async ({ params }) => {
         <div className={styles.detail}>
           {post && (
             <Suspense fallback={<div>Loading...</div>}>
-              <PostUser userId={post.userId} />
+              <PostUser userId={post.userID} />
             </Suspense>
           )}
           <div className={styles.detailText}>
