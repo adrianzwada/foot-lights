@@ -3,6 +3,7 @@ import { connect } from "mongoose"
 import { connectDb } from "./connectDb"
 import { Post } from "./models"
 import { revalidatePath } from "next/cache"
+import { signIn } from "./auth"
 
 export const addPost = async(formData) => {
     const {title, desc, slug, userId} = Object.fromEntries(formData)
@@ -41,4 +42,12 @@ export const deletePost = async(formData) => {
         return{error:'Something went wrong try later!'}
     }
         
+}
+export const handleGithubLogin = async () => {
+    'use server'
+    await signIn('github')
+}
+export const handleLogout = async () => {
+    'use server'
+    await signOut()
 }

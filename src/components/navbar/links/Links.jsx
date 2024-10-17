@@ -1,6 +1,8 @@
 'use client'
+import { auth } from '@/constans/auth'
 import styles from './links.module.css'
 import NavLink from './navLink/navLink'
+import { handleLogout } from '@/constans/action'
 import { useState } from 'react'
 const links = [
 	{ title: 'Homepage', path: '/' },
@@ -10,9 +12,9 @@ const links = [
 	{ title: "Blog", path: "/blog",
 	  },
 ]
-const Links = () => {
+const Links =  ({session}) => {
 	const [open, setOpen] = useState(false)
-	const session = false
+
 	const isAdmin = false
 	return (
 		<div className={styles.container}>
@@ -20,10 +22,12 @@ const Links = () => {
 				{links.map(link => (
 					<NavLink item={link} key={link.title} />
 				))}
-				{session ? (
+				{session?.user ? (
 					<>
-						{isAdmin && <NavLink item={{ title: 'Admin', path: '/admin' }} />}
-						<button className={styles.logoutButton}>Logout</button>
+						{session.user?.isAdmin && <NavLink item={{ title: 'Admin', path: '/admin' }} />}
+						<form action={handleLogout}>
+							<button className={styles.logoutButton}>Logout</button>
+						</form>
 					</>
 				) : (
 					<NavLink item={{ title: 'Login', path: '/login' }} />

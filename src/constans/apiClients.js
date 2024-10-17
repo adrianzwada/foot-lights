@@ -33,9 +33,6 @@ class TheMovieDBClient {
 	fetchPopularPeopledata() {
 		return this.handleRequest(`/trending/person/week?language=en-US`)
 	}
-	fetchMovieData(id) {
-		return this.handleRequest(`/movie/${id}/videos?language=en-US`)
-	}
 }
 
 const movieDBClient = new TheMovieDBClient()
