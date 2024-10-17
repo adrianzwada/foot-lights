@@ -1,24 +1,15 @@
-import { auth, signIn } from "@/constans/auth";
-import styles from "./login.module.css";
-
+import styles from './login.module.css'
+import { handleGithubLogin } from '@/constans/action'
 const LoginPage = async () => {
-  const session = await auth()
-  console.log(session, 'session')
-
-  const handleGithubLogin = async () => {
-        "use server"
-        await signIn("github")
-    };
-
-    return (
-        <div className={styles.container}>
-        <div className={styles.wrapper}>
-          <form action={handleGithubLogin}>
-            <button className={styles.github}>Login with Github</button>
-          </form>
-        </div>
-      </div>
-    )
+	return (
+		<div className={styles.container}>
+			<div className={styles.wrapper}>
+				<form action={handleGithubLogin}>
+					<button type='submit'>Signin with GitHub</button>
+				</form>
+			</div>
+		</div>
+	)
 }
 
 export default LoginPage
