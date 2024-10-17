@@ -21,7 +21,7 @@ const tvsIdDetails = await apiTvId.fetchTvDetails(params.id)
 const genderTabs =  tvsIdDetails.genres.map((genre, index) => (
 		<p key={index} className={styles.genreTab}>{genre.name}</p>
 ))
-
+console.log(tvsIdDetails)
 // Votte Average rounding 
 function ratingAdjust(par, decimalPlaces = 1) {
 	const factor = 10 ** decimalPlaces
